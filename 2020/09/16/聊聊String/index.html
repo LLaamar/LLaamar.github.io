@@ -16,7 +16,7 @@
 <meta property="og:description" content="聊聊String String和StringBuffer还有StringBuilder  String底层 12345private final char value[];&#x2F;* 创建String时是创建了一个被final修饰的不可变的字符数组所以在拼接扩容的时候,只能另外新创建一个字符串,然后将新的字符串地址赋值给旧的字符串*&#x2F;  StringBuffer 1234567private trans">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-09-16T10:10:10.595Z">
-<meta property="article:modified_time" content="2020-09-16T10:11:20.337Z">
+<meta property="article:modified_time" content="2020-09-16T10:18:54.753Z">
 <meta property="article:author" content="LLaamar">
 <meta property="article:tag" content="后端开发,程序猿,代码,开源,编程,Coder">
 <meta name="twitter:card" content="summary">
@@ -176,6 +176,9 @@
 </ul>
 </li>
 </ul>
+<p><font color=gray>==========================分割线=============================</font></p>
+<p>总结:</p>
+<p>​        <strong>一般情况下用String是没有问题的,使用StringBuilder能极大地提高效率,在多        线程情况下最好使用【StringBuffer】</strong></p>
 
       
 
