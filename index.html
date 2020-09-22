@@ -155,6 +155,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-SSM_常用注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="SSM-常用注解"><a href="#SSM-常用注解" class="headerlink" title="SSM_常用注解"></a>SSM_常用注解</h2><h3 id="Spring的声明注解"><a href="#Spring的声明注解" class="headerlink" title="Spring的声明注解"></a>Spring的声明注解</h3><ul>
+<li><p>Component </p>
+<p>  声明一般的bean</p>
+</li>
+<li><p>Controller</p>
+<p>  声明控制层的bean</p>
+</li>
+<li><p>Service</p>
+<p>  声明服务层的bean</p>
+</li>
+<li><p>Repository </p>
+<p>  声明持久层的bean(一般不使用,因为持久层一般只写接口,在整合了MyBatis后直接Autowired注入即可)</p>
+<h3 id="注入bean的注解"><a href="#注入bean的注解" class="headerlink" title="注入bean的注解"></a>注入bean的注解</h3></li>
+<li><p>Autowired</p>
+<p>  自动装配,会根据bean类型从Spring的上下文中查找</p>
+</li>
+<li><p>Resource </p>
+<p>  采用名称+类型的方式完成自动装配   </p>
+<h3 id="SpringMVC"><a href="#SpringMVC" class="headerlink" title="SpringMVC"></a>SpringMVC</h3></li>
+<li><p>RequestParam</p>
+<ul>
+<li><p>用来处理 <code>Content-Type</code> 为 <code>application/x-www-form-urlencoded</code> 编码的内容，<code>Content-Type</code>默认为该属性。</p>
+</li>
+<li><p>@RequestParam也可用于其它类型的请求，例如：POST、DELETE等请求</p>
+</li>
+</ul>
+</li>
+<li><p>RequestBody</p>
+<p>  用于接收前端发送的Json对象</p>
+</li>
+<li><p>RequestMapping</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">用于绑定方法的访问路径,以及访问类型(post,get,put,delete)</span><br><span class="line">由此衍生出:</span><br><span class="line">1.PostMapping</span><br><span class="line">2.GetMapping</span><br><span class="line">3.PutMapping</span><br><span class="line">4.DeleteMapping</span><br><span class="line"></span><br><span class="line">**注意**:这个注解加在类上时,表示类中的所有响应请求的方法都是以该地址作为父路径</span><br><span class="line"></span><br><span class="line">RequestMapping有六个属性：</span><br><span class="line">value：指定请求的实际地址</span><br><span class="line">method：指定请求的method类型，get、post、put、delete</span><br><span class="line">consumes：指定处理请求的提交内容类型</span><br><span class="line">produces：指定返回的内容类型，仅当request请求头中的(Accept)类型中包含该指定类型才返回</span><br><span class="line">params：指定request中必须包含某些参数值才让该方法处理</span><br><span class="line">header：指定request中必须包含某些指定的header值，才让该方法处理请求</span><br></pre></td></tr></table></figure></li>
+<li><p>PathVariable</p>
+<p>  用在形式参数前,配合{param}将请求中的参数赋值给形式参数中同名称的参数</p>
+</li>
+<li><p>ResponseBody</p>
+<p>  表示返回一个Json或者自定义类型的对象给前端</p>
+</li>
+<li><p>RestController</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">这是一个组合注解,相当于@Controller和@ResponseBody的结合</span><br><span class="line">一般用在Controller层的类上,相当于给每个方法上都加上了@ResponseBody</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/09/22/SSM_%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-聊聊String" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
