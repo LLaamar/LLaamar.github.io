@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives: 2020 | LLaamar的博客</title>
+  <title>LLaamar的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="飞向太空,宇宙无限">
-<meta property="og:type" content="website">
+  <meta name="description" content="MyBatis的和PageHelper分页插件的奇怪知识12345678910111213141516&#x2F;&#x2F;分页查询findPage() &amp;#123;       var param &#x3D; &amp;#123;                currentPage:this.pagination.currentPage,        pageSize:this.paginati">
+<meta property="og:type" content="article">
 <meta property="og:title" content="LLaamar的博客">
-<meta property="og:url" content="http://yoursite.com/archives/2020/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/09/25/MyBatis%E7%9A%84%E5%92%8CPageHelper%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="LLaamar的博客">
-<meta property="og:description" content="飞向太空,宇宙无限">
+<meta property="og:description" content="MyBatis的和PageHelper分页插件的奇怪知识12345678910111213141516&#x2F;&#x2F;分页查询findPage() &amp;#123;       var param &#x3D; &amp;#123;                currentPage:this.pagination.currentPage,        pageSize:this.paginati">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200925151531356.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE3NTkxOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200925151813952.jpg#pic_center">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200925151404972.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE3NTkxOA==,size_16,color_FFFFFF,t_70#pic_center">
+<meta property="article:published_time" content="2020-09-25T06:49:54.924Z">
+<meta property="article:modified_time" content="2020-09-25T07:45:46.067Z">
 <meta property="article:author" content="LLaamar">
 <meta property="article:tag" content="后端开发,程序猿,代码,开源,编程,Coder">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200925151531356.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE3NTkxOA==,size_16,color_FFFFFF,t_70#pic_center">
   
     <link rel="alternative" href="/atom.xml" title="LLaamar的博客" type="application/atom+xml">
   
@@ -153,112 +159,162 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MyBatis的和PageHelper分页插件的奇怪知识" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="MyBatis的和PageHelper分页插件的奇怪知识"><a href="#MyBatis的和PageHelper分页插件的奇怪知识" class="headerlink" title="MyBatis的和PageHelper分页插件的奇怪知识"></a>MyBatis的和PageHelper分页插件的奇怪知识</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;分页查询</span><br><span class="line">findPage() &#123;   </span><br><span class="line">    var param &#x3D; &#123;        </span><br><span class="line">        currentPage:this.pagination.currentPage,</span><br><span class="line">        pageSize:this.pagination.pageSize,</span><br><span class="line">        queryString: this.pagination.queryString &#x2F;&#x2F; 查询条件</span><br><span class="line">    &#125;;</span><br><span class="line">&#x2F;&#x2F; 发送ajax请求到后台</span><br><span class="line">    axios.post(&quot;&#x2F;orderSettingList&#x2F;findPage.do&quot;,param)</span><br><span class="line">                    .then((res)&#x3D;&gt;&#123;                </span><br><span class="line">                    &#x2F;&#x2F;解析Controller响应回的数据，为模型数据赋值                        </span><br><span class="line">                    this.pagination.total &#x3D; res.data.total;                        </span><br><span class="line">                    this.dataList &#x3D; res.data.rows;                         </span><br><span class="line">                                 &#125;                 </span><br><span class="line">    );</span><br><span class="line">&#125;   </span><br></pre></td></tr></table></figure>
+<p>前端代码如上,将分页查询的参数封装然后发送到后台,在后台,执行如下代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F; 导入分页插件的包</span><br><span class="line">import com.github.pagehelper.Page;</span><br><span class="line">import com.github.pagehelper.PageHelper;</span><br><span class="line">&#x2F;&#x2F; 导入OrderSettingListDaoHj包,这个包是被代理的接口的包</span><br><span class="line">import com.itheima.dao.OrderSettingListDaoHj;</span><br><span class="line">&#x2F;&#x2F; 导入一个封装返回结果的包</span><br><span class="line">import com.itheima.entity.PageResult;</span><br><span class="line">&#x2F;&#x2F; 导入一个封装了前端传递过来的参数的包</span><br><span class="line">import com.itheima.entity.QueryPageBean;</span><br><span class="line">&#x2F;&#x2F; 导入最后的分页中封装的对象包</span><br><span class="line">import com.itheima.pojo.OrderHj;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public PageResult pageQuery(QueryPageBean queryPageBean) &#123;</span><br><span class="line">        Integer currentPage &#x3D; queryPageBean.getCurrentPage();</span><br><span class="line">        Integer pageSize &#x3D; queryPageBean.getPageSize();</span><br><span class="line">        String queryString &#x3D; queryPageBean.getQueryString();</span><br><span class="line"></span><br><span class="line">        PageHelper.startPage(currentPage, pageSize);</span><br><span class="line">        Page&lt;OrderHj&gt; page &#x3D; orderSettingListDao.selectByCondition(queryString);</span><br><span class="line">        List&lt;OrderHj&gt; list &#x3D; page.getResult();</span><br><span class="line">        return new PageResult(page.getTotal(), list);</span><br><span class="line">&#125;        </span><br></pre></td></tr></table></figure>
+<p>后台代码如上,接下来是xml文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; encoding&#x3D;&quot;UTF-8&quot; ?&gt;</span><br><span class="line">&lt;!DOCTYPE mapper PUBLIC &quot;-&#x2F;&#x2F;mybatis.org&#x2F;&#x2F;DTD Mapper 3.0&#x2F;&#x2F;EN&quot;</span><br><span class="line">        &quot;http:&#x2F;&#x2F;mybatis.org&#x2F;dtd&#x2F;mybatis-3-mapper.dtd&quot; &gt;</span><br><span class="line">&lt;mapper namespace&#x3D;&quot;com.itheima.dao.OrderSettingListDaoHj&quot; &gt;</span><br><span class="line"></span><br><span class="line">    &lt;!--条件查询--&gt;</span><br><span class="line">    &lt;select id&#x3D;&quot;selectByCondition&quot; parameterType&#x3D;&quot;java.lang.String&quot; resultType&#x3D;&quot;com.itheima.pojo.OrderHj&quot;&gt;</span><br><span class="line">        SELECT </span><br><span class="line">            o.*,</span><br><span class="line">            m.name AS memberName,</span><br><span class="line">            m.phoneNumber as phoneNumber,</span><br><span class="line">            s.name AS setmealName</span><br><span class="line">        FROM</span><br><span class="line">            t_order AS o</span><br><span class="line">        LEFT JOIN</span><br><span class="line">            t_member AS m</span><br><span class="line">        ON</span><br><span class="line">            o.member_id &#x3D; m.id</span><br><span class="line">        LEFT JOIN</span><br><span class="line">            t_setmeal AS s</span><br><span class="line">        ON</span><br><span class="line">            o.setmeal_id &#x3D; s.id</span><br><span class="line">        &lt;if test&#x3D;&quot;value !&#x3D; null and value.length &gt; 0&quot;&gt;</span><br><span class="line">            HAVING m.name &#x3D; #&#123;value&#125; OR m.phoneNumber &#x3D; #&#123;value&#125;</span><br><span class="line">        &lt;&#x2F;if&gt;</span><br><span class="line">        ORDER BY o.orderDate DESC</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<p>代码交代完毕,执行代码,后台跑起来以后,我们在搜索框输入电话号码作为查询条件<br><img src="https://img-blog.csdnimg.cn/20200925151531356.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE3NTkxOA==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>点击查询,查询失败,到后台一开,后台报错<br><img src="https://img-blog.csdnimg.cn/20200925151813952.jpg#pic_center" alt="在这里插入图片描述"><br>最初怀疑是xml文件中的SQL语句写的有问题,将SQL语句复制粘贴到图形化界面中查询,查询结果如下<br><img src="https://img-blog.csdnimg.cn/20200925151404972.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MzE3NTkxOA==,size_16,color_FFFFFF,t_70#pic_center" alt="在这里插入图片描述"><br>SQL语句并没有任何问题,那到底是哪儿出了问题呢?回去翻看IDEA控制台打印的日志信息,发现这样一条语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SQL: SELECT count(0) FROM t_order AS o LEFT JOIN t_member AS m ON o.member_id &#x3D; m.id LEFT JOIN t_setmeal AS s ON o.setmeal_id &#x3D; s.id HAVING m.name &#x3D; ? OR m.phoneNumber &#x3D; ?</span><br></pre></td></tr></table></figure>
+<p>这就很奇怪了,写在xml文件里的SQL语句并没有count(0),我的SQL语句咋就被狸猫换太子了呢?</p>
+<hr>
+<p>非常非常非常久以后,灵感来了,count(0)这不是用来统计数量的嘛,我们写的代码里面有和统计数量的代码有关系的?仔细想想还真有!</p>
+<p>还记得后台代码吗,记不得建议翻回去看看嗷,里面用到了分页插件,而分页插件会做什么事,会统计<strong>total</strong>啊朋友们!<br>当然,这些都只是我们的猜想,不BB,直接实验,改造程序,把后台代码里面的分页插件的代码注释掉.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">public PageResult pageQuery(QueryPageBean queryPageBean) &#123;</span><br><span class="line">        Integer currentPage &#x3D; queryPageBean.getCurrentPage();</span><br><span class="line">        Integer pageSize &#x3D; queryPageBean.getPageSize();</span><br><span class="line">        String queryString &#x3D; queryPageBean.getQueryString();</span><br><span class="line">        </span><br><span class="line">        &#x2F;*</span><br><span class="line">        PageHelper.startPage(currentPage, pageSize);</span><br><span class="line">        List&lt;OrderHj&gt; list &#x3D; page.getResult();</span><br><span class="line">        return new PageResult(page.getTotal(), list);</span><br><span class="line">        *&#x2F;</span><br><span class="line">        &#x2F;&#x2F; 将这行代码单独出来保证SQL语句能运行到</span><br><span class="line">         Page&lt;OrderHj&gt; page &#x3D; orderSettingListDao.selectByCondition(queryString);</span><br><span class="line">        return null;</span><br><span class="line">&#125;        </span><br></pre></td></tr></table></figure>
+<p>代码改造好,直接去运行,只要后台不报错,那就可以基本确定问题了,运行!<br>后台没有报错,再看信息,SQL语句回来了.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Preparing: SELECT o.*, m.name AS memberName, m.phoneNumber as phoneNumber, s.name AS setmealName FROM t_order AS o LEFT JOIN t_member AS m ON o.member_id &#x3D; m.id LEFT JOIN t_setmeal AS s ON o.setmeal_id &#x3D; s.id ORDER BY o.orderDate DESC </span><br></pre></td></tr></table></figure>
+<p>果然就是分页插件的锅!分页插件在运行过程中,会在我们原有SQL的基础上拼接SELECT COUNT(0)用来统计我们的SQL语句查询出来的结果,这样就会报错,咋报错我们知道了,那咋解决呢?</p>
+<hr>
+<p>要解决这个问题,最重要解决分页查询给我们拼接的问题,在多次的试验过程中,我发现一个关键字就能完美解决这个问题–DISTINCT,我们在原来的SQL中添加一个去重的关键字</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;select id&#x3D;&quot;selectByCondition&quot; parameterType&#x3D;&quot;java.lang.String&quot; resultType&#x3D;&quot;com.itheima.pojo.OrderHj&quot;&gt;</span><br><span class="line">        SELECT </span><br><span class="line">        DISTINCT</span><br><span class="line">            o.*,</span><br><span class="line">            m.name AS memberName,</span><br><span class="line">            m.phoneNumber as phoneNumber,</span><br><span class="line">            s.name AS setmealName</span><br><span class="line">        FROM</span><br><span class="line">            t_order AS o</span><br><span class="line">        LEFT JOIN</span><br><span class="line">            t_member AS m</span><br><span class="line">        ON</span><br><span class="line">            o.member_id &#x3D; m.id</span><br><span class="line">        LEFT JOIN</span><br><span class="line">            t_setmeal AS s</span><br><span class="line">        ON</span><br><span class="line">            o.setmeal_id &#x3D; s.id</span><br><span class="line">        &lt;if test&#x3D;&quot;value !&#x3D; null and value.length &gt; 0&quot;&gt;</span><br><span class="line">            HAVING m.name &#x3D; #&#123;value&#125; OR m.phoneNumber &#x3D; #&#123;value&#125;</span><br><span class="line">        &lt;&#x2F;if&gt;</span><br><span class="line">        ORDER BY o.orderDate DESC</span><br><span class="line">    &lt;&#x2F;select&gt;</span><br></pre></td></tr></table></figure>
+<hr>
+<p>然后我们再看看运行代码后台的信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Preparing: SELECT count(0) FROM (SELECT DISTINCT o.*, m.name AS memberName, m.phoneNumber AS phoneNumber, s.name AS setmealName FROM t_order AS o LEFT JOIN t_member AS m ON o.member_id &#x3D; m.id LEFT JOIN t_setmeal AS s ON o.setmeal_id &#x3D; s.id HAVING m.name &#x3D; ? OR m.phoneNumber &#x3D; ?) table_count </span><br><span class="line">Parameters: 王五(String), 王五(String)</span><br></pre></td></tr></table></figure>
+<p>虽然还是进行了SELECT COUNT(0),但这一次是把我们写的SQL语句括起来了,我的理解是这次分页插件和MyBatis把我们写的SQL语句的查询结果当做视图–也就是虚拟表来查询总数,这样,就把问题解决了.</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2020" class="archive-year">2020</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/25/MyBatis%E7%9A%84%E5%92%8CPageHelper%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E7%9F%A5%E8%AF%86/" class="archive-article-date">
-  	<time datetime="2020-09-25T06:49:54.924Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-25</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/09/25/MyBatis%E7%9A%84%E5%92%8CPageHelper%E5%88%86%E9%A1%B5%E6%8F%92%E4%BB%B6%E7%9A%84%E5%A5%87%E6%80%AA%E7%9F%A5%E8%AF%86/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/22/SSM_%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" class="archive-article-date">
-  	<time datetime="2020-09-22T07:00:43.527Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-22</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/09/16/%E8%81%8A%E8%81%8AString/" class="archive-article-date">
-  	<time datetime="2020-09-16T10:10:10.595Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-09-16</time>
-</a>
-        </div>
-    	 
-        <div class="article-info info-on-right">
-          
-          
+<nav id="article-nav">
+  
+  
+    <a href="/2020/09/22/SSM_%E5%B8%B8%E7%94%A8%E6%B3%A8%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2020/08/07/hello-world/" class="archive-article-date">
-  	<time datetime="2020-08-07T01:30:48.647Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-08-07</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2020/08/07/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+
+  
 
 
           </div>
@@ -281,8 +337,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
